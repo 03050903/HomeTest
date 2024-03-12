@@ -1,0 +1,73 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout>
+    <data>
+        <import type="com.chen.hometest.util.TimeFormat"/>
+        <variable
+            name="earthQuakeModel"
+            type="com.chen.hometest.model.EarthQuakeItemModel" />
+    </data>
+    <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:app="http://schemas.android.com/apk/res-auto"
+        xmlns:tools="http://schemas.android.com/tools"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:paddingStart="@dimen/dp_16"
+        android:paddingEnd="@dimen/dp_16"
+        android:paddingTop="@dimen/dp_12"
+        android:paddingBottom="@dimen/dp_12"
+        >
+      <LinearLayout
+          android:layout_width="0dp"
+          android:layout_height="wrap_content"
+          android:layout_weight="1"
+          android:layout_marginEnd="@dimen/dp_12"
+          android:orientation="vertical">
+          <TextView
+              android:layout_width="match_parent"
+              android:layout_height="wrap_content"
+              android:textSize="@dimen/sp_16"
+              android:textColor="@color/black"
+              android:id="@+id/tv_title"
+              tools:text="this is title text"
+              android:text="@{earthQuakeModel.title}"
+              />
+          <TextView
+              android:layout_width="match_parent"
+              android:layout_height="wrap_content"
+              android:textSize="@dimen/sp_14"
+              android:textColor="@color/item_subtitle"
+              android:id="@+id/tv_position"
+              android:text="@{earthQuakeModel.place}"
+              tools:text="this is position text"
+              />
+      </LinearLayout>
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textSize="@dimen/sp_16"
+                android:textColor="@color/black"
+                android:text="@{TimeFormat.format(earthQuakeModel.time)}"
+                tools:text="2022-10-12"
+                android:id="@+id/tv_time"
+                />
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textSize="@dimen/sp_14"
+                android:textColor="@{earthQuakeModel.cdi>=7.2?@color/red:@color/item_subtitle}"
+                tools:text="level:7.5"
+                android:layout_gravity="end"
+
+                android:text="@{@string/earth_quake_level(earthQuakeModel.cdi)}"
+                android:id="@+id/tv_level"
+                />
+        </LinearLayout>
+
+
+    </LinearLayout>
+</layout>

@@ -1,0 +1,4 @@
+<resources>
+    <string name="app_name">HomeTest</string>
+    <string name="earth_quake_level">level:%.1f</string>
+</resources>
