@@ -4,18 +4,19 @@ import com.chen.hometest.util.CLog
 import org.json.JSONObject
 import java.lang.Exception
 
-data class EarthQuakeItemModel(val place:String,val time:Long,val cdi:Double,val title:String){
+data class EarthQuakeItemModel(val place:String,val time:Long,val cdi:Double,val title:String,val geometry:String?){
     companion object{
         fun build(modelJson:JSONObject):EarthQuakeItemModel?{
             CLog.log("read item model:$modelJson")
             try {
+                val geometry = modelJson.optJSONObject("geometry")?.toString()?:null
                 val json = modelJson.optJSONObject("properties")
                 val title = json.optString("title")
                 val time = json.optLong("time")
                 val place = json.optString("place")
                 val cdi = json.optDouble("cdi")
                 CLog.log("place:$place,title:$title,time:$time,cdi:$cdi")
-                return EarthQuakeItemModel(place,time,cdi,title)
+                return EarthQuakeItemModel(place,time,cdi,title,geometry)
             }catch (e:Exception){
                 //log parse model error message
                 e.printStackTrace()
